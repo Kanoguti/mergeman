@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>mergeman - readme</title>
+
+        <style>
+            table.main {
+                margin: auto;
+                width: 90%;
+                border: 2px solid rgb(0,0,0);
+            }
+            table.main tr td {
+                padding: 10px;
+                width: 50%;
+                border: 2px solid rgb(0,0,0);
+            }
+            table.main tr td.jp {
+                background-color: rgb(255,127,127);
+            }
+            table.main tr td.en {
+                background-color: rgb(127,127,255);
+            }
+            table.main hr {
+                width: 75%;
+                border: 3px solid rgba(0,0,0,0.75);
+                border-radius: 3px;
+            }
+            table.main p,table.main h1,table.main h2,table.main h3,table.main h4,table.main h5,table.main h6 {
+                line-height: 1.5em;
+            }
+            .center {
+                text-align:center;
+            }
+            code {
+                text-decoration-line: none;
+                background-color: rgba(255,255,255,0.75);
+                border-radius: 5px;
+                border: 2px solid rgb(0,0,0);
+                padding: 5px;
+                font-size: 16px;
+                line-height: calc( ( 16px + 5px * 2 ) + 8px );
+            }
+            table.options {
+                margin: auto;
+                width: 90%;
+                border: 2px solid rgb(0,0,0);
+                background-color: rgba(255,255,255,0.5);
+            }
+            table.options tr td {
+                padding: 10px;
+                width: 50%;
+                border: 2px solid rgb(0,0,0);
+            }
+            ul {
+                padding-left: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="main">
+            <tr>
+                <td class="jp">
+                    <h2 class="center">「mergeman」<br>説明書</h2>
+                    <p class="center">2024 Kanoguti</p>
+                </td>
+                <td class="en">
+                    <h2 class="center">"mergeman"<br>Instructions</h2>
+                    <p class="center">2024 Kanoguti</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="jp">
+                    <h3 class="center">このソフトウェアの概要</h3>
+                    <hr>
+                    <p>
+                        このソフトウェア「mergeman」は、指定したディレクトリ内のLuaスクリプトファイルを全て結合し、1つのLuaスクリプトファイルを生成するためのツールです。
+                    </p>
+                </td>
+                <td class="en">
+                    <h3 class="center">Overview of this software.</h3>
+                    <hr>
+                    <p>
+                        The software "mergeman" is a tool to combine all Lua script files in a specified directory into a single Lua script file.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="jp">
+                    <h3 class="center">このソフトウェアの使い方</h3>
+                    <hr>
+                    <p>
+                        このソフトウェアは、コンソールアプリケーションです。なのでこのソフトウェアは、Windowsでは「Windows PowerShell」や「コマンドプロンプト」上で、LinuxやmacOSでは「ターミナル」上で動作します。
+                    </p>
+                    <p>
+                        このソフトウェアのプログラムはPython 3.12.3で記述されています。このソフトウェアをソースコードから動作させるには、Pythonをインストールしてください。
+                    </p>
+                    <p>
+                        このソフトウェアの基本的な使い方は以下の通りです。
+                    </p>
+                    <code>python mergeman.py [オプション]</code>
+                    <p>
+                        このソフトウェアをPyInstaller等で実行ファイルに変換し、その実行ファイルをWindowsの「Windows PowerShell」や、LinuxかmacOSの「ターミナル」で使用する場合の使い方は以下の通りです。
+                    </p>
+                    <code>./mergeman [オプション]</code>
+                </td>
+                <td class="en">
+                    <h3 class="center">How to use this software.</h3>
+                    <hr>
+                    <p>
+                        This software is a console application. So this software runs on "Windows PowerShell" or "Command Prompt" on Windows, and on "Terminal" on Linux and macOS.
+                    </p>
+                    <p>
+                        This software program is written in Python 3.12.3. To run this software from source code, please install Python.
+                    </p>
+                    <p>
+                        The basic usage of this software is as follows.
+                    </p>
+                    <code>python mergeman.py [options]</code>
+                    <p>
+                        If you want to convert this software into an executable file using PyInstaller, etc. and use the executable file with "Windows PowerShell" on Windows or "Terminal" on Linux or macOS, the usage is as follows.
+                    </p>
+                    <code>./mergeman [options]</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="jp">
+                    <h3 class="center">コマンドのオプションについて</h3>
+                    <hr>
+                    <p>
+                        コマンドのオプションは以下のように記述します。
+                    </p>
+                    <code>python mergeman.py --[1つめのオプションの名前] [1つめのオプションの内容] --[2つめのオプションの名前] [2つめのオプションの内容] ...</code>
+                    <p>
+                        使用できるコマンドのオプションは以下の通りです。
+                    </p>
+                    <table class="options">
+                        <tr>
+                            <td><code>--project [path]</code></td>
+                            <td>
+                                <p>
+                                    指定したディレクトリを、このソフトウェアの処理対象にします。
+                                </p>
+                                <p>
+                                    ここで指定したディレクトリの親ディレクトリに、このソフトウェアの処理の結果が「<code>[path]</code>_export(n)」という名前のフォルダに生成されます。
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>このソフトウェアの処理の対象とするディレクトリ。
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--entry [path]</code></td>
+                            <td>
+                                <p>
+                                    指定したLuaスクリプトファイルを、このソフトウェアの処理のエントリーポイントとします。
+                                </p>
+                                <p>
+                                    指定するLuaスクリプトファイルのパスは、「<code>--project</code>」で指定したディレクトリをルートディレクトリとした相対パスにしてください。
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>処理のエントリーポイントとなるLuaスクリプトファイルの相対パス
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--output [path]</code></td>
+                            <td>
+                                <p>
+                                    このソフトウェアの処理後に出力されるLuaスクリプトファイルを指定します。
+                                </p>
+                                <p>
+                                    このオプションを省略すると、<code>[path]</code>の内容は「<code>--entry</code>」で指定した<code>[path]</code>と同じ値になります。
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>出力されるLuaスクリプトファイルの相対パス
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--obfuscate [number]</code></td>
+                            <td>
+                                <p>
+                                    「<code>--output</code>」で指定したLuaスクリプトファイルに、超簡易的に難読化を行います。
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[number]</code><br>難読化を行う回数を数字で指定(0から5まで)
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--exclude [path]</code></td>
+                            <td>
+                                <p>
+                                    指定したディレクトリやLuaスクリプトファイル等を、このソフトウェアの処理の対象から外します。
+                                </p>
+                                <p>
+                                    指定するパスは、「<code>--project</code>」で指定したディレクトリをルートディレクトリとした相対パスにしてください。
+                                </p>
+                                <p>
+                                    このオプションは、繰り返し記述することが可能です。
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>処理の対象から外すパス
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--clean</code></td>
+                            <td>
+                                <p>
+                                    処理の結果のフォルダ内のLuaスクリプトファイル全て(ただし、「<code>--entry</code>」オプションで指定したものと、「<code>--exclude</code>」オプションで指定したものを除く)を全て削除します。
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--blank</code></td>
+                            <td>
+                                <p>
+                                    処理の結果のフォルダ内のLuaスクリプトファイル全て(ただし、「<code>--entry</code>」オプションで指定したものと、「<code>--exclude</code>」オプションで指定したものを除く)を全て空のLuaスクリプトファイルにします。
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--protect</code></td>
+                            <td>
+                                <p>
+                                    初期設定では、処理の結果のフォルダ内のすべての空のフォルダは自動的に削除されますが、このオプションを指定するとその処理を防止します。
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="en">
+                    <h3 class="center">About command options.</h3>
+                    <hr>
+                    <p>
+                        The command options are written as follows.
+                    </p>
+                    <code>python mergeman.py --[Name of the first option] [Contents of the first option] --[Name of the second option] [Contents of the second option] ...</code>
+                    <p>
+                        The available command options are as follows
+                    </p>
+                    <table class="options">
+                        <tr>
+                            <td><code>--project [path]</code></td>
+                            <td>
+                                <p>
+                                    The specified directory is the target of this software's processing.
+                                </p>
+                                <p>
+                                    In the parent directory of the directory specified here, the results of this software process will be generated in a folder named "<code>[path]</code>_export(n)".
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>The directory to be processed by this software.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--entry [path]</code></td>
+                            <td>
+                                <p>
+                                    The specified Lua script file is the entry point for this software process.
+                                </p>
+                                <p>
+                                    The path to the specified Lua script file should be relative to the directory specified by "<code>--project</code>" as the root directory.
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>Relative path of the Lua script file that will be the entry point for processing.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--output [path]</code></td>
+                            <td>
+                                <p>
+                                    Specifies the Lua script file that will be output after processing by this software.
+                                </p>
+                                <p>
+                                    If this option is omitted, the content of <code>[path]</code> will be the same value as the <code>[path]</code> specified by "<code>--entry</code>".
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>Relative path of the output Lua script file.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--obfuscate [number]</code></td>
+                            <td>
+                                <p>
+                                    Obfuscate the Lua script file specified by "<code>--output</code>" in a very simple way.
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[number]</code><br>Number of times to obfuscate (from 0 to 5)
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--exclude [path]</code></td>
+                            <td>
+                                <p>
+                                    Exclude specified directories, Lua script files, etc. from processing by this software.
+                                </p>
+                                <p>
+                                    The path specified must be relative to the directory specified by "<code>--project</code>" as the root directory.
+                                </p>
+                                <p>
+                                    This option can be repeated.
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>Paths to exclude from processing.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--clean</code></td>
+                            <td>
+                                <p>
+                                    Delete all Lua script files (except those specified with the "<code>--entry</code>" option and those specified with the "<code>--exclude</code>" option) in the folder resulting from the process.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--blank</code></td>
+                            <td>
+                                <p>
+                                    All Lua script files in the folder resulting from the process (except those specified with the "<code>--entry</code>" option and those specified with the "<code>--exclude</code>" option) will be all empty Lua script files.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--protect</code></td>
+                            <td>
+                                <p>
+                                    By default, all empty folders in the resulting folder of processing are automatically deleted, but this option prevents that process.
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="jp">
+                    <h3 class="center">処理対象となるファイルについて</h3>
+                    <hr>
+                    <p>「<code>--exclude</code>」オプションで指定されたパスを除き、このソフトウェアの処理対象となるファイルは、基本的に「<code>LUA_PATH</code>」環境変数で指定された値をもとに検索されます。もし、「<code>LUA_PATH</code>」環境変数が設定されていない場合、mergemanを起動中は「<code>LUA_PATH</code>」のデフォルト値は「<code>./?.lua;./?/init.lua;</code>」に設定されます。このソフトウェアでは「<code>LUA_PATH</code>」環境変数の中に「<code>!</code>」記号を入力しても、その部分が実行形式のディレクトリに置換される処理は行われないことにご注意ください。</p>
+                </td>
+                <td class="en">
+                    <h3 class="center">About files to be processed.</h3>
+                    <hr>
+                    <p>
+                        Except for paths specified with the "<code>--exclude</code>" option, files to be processed by this software are basically searched based on the value specified in the "<code>LUA_PATH</code>" environment variable. If the "<code>LUA_PATH</code>" environment variable is not set, the default value of "<code>LUA_PATH</code>" will be "<code>./?.lua;./?/init.lua;</code>". In this software, if you enter the "<code>!</code>" symbol in the "<code>LUA_PATH</code>" environment variable, the software does not process the replacement of that part with the executable directory.
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
