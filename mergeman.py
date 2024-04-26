@@ -216,9 +216,10 @@ def main():
                 temp_flag=True
                 if len(argv_data["exclude"])>0:
                     for temp_exclude in argv_data["exclude"]:
-                        if fix_separator(temp_get_name).find(fix_separator(temp_exclude))==0:
-                            temp_flag=False
-                            break
+                        if os.path.exists(fix_separator(temp_exclude))==True:
+                            if fix_separator(temp_get_name).find(fix_separator(temp_exclude))==0:
+                                temp_flag=False
+                                break
 
         if temp_flag==True:
             if argv_data["clean"]==True or argv_data["blank"]==True:
