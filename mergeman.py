@@ -240,6 +240,13 @@ def main():
     export_file.write(temp_entry_data+"\n")
     export_file.close()
 
+    if argv_data["clean"]==True or argv_data["blank"]==True:
+        temp_get_name=argv_data["entry"]
+        if temp_get_name.find(export_path)==0:
+            temp_get_name=temp_get.replace(export_path+os.sep,"",1)
+        if(argv_data["entry"]!=argv_data["output"]):
+            cleaning_list.append(fix_separator(temp_get_name))
+
     if argv_data["obfuscate"]>0:
         for temp_cnt in range(argv_data["obfuscate"]):
             temp_file=open(argv_data["output"],"r",encoding="utf-8")
