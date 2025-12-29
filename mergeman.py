@@ -1,5 +1,5 @@
 # mergeman
-# 2024 Kanoguti
+# 2024-2025 Kanoguti
 
 import os
 import glob
@@ -74,6 +74,8 @@ def main():
     argv_data["clean"]=False
     argv_data["blank"]=False
     argv_data["protect"]=False
+
+    print("mergeman - ver 1.03")
 
     if len(sys.argv)-1<=0:
         print("=Usage=")
@@ -194,14 +196,6 @@ def main():
     cleaning_list=[]
     
     export_file=open(argv_data["output"],"w",encoding="utf-8")
-    export_file.write("local ___defaultRequire=require"+"\n")
-    export_file.write("local ___requireTable={}"+"\n")
-    export_file.write("local function require(p_module)"+"\n")
-    export_file.write("local module_name=p_module:gsub(\"/\",\".\")"+"\n")
-    export_file.write("while module_name:find(\"..\",1,true)~=nil do module_name=module_name:gsub(\"%.%.\",\".\") end"+"\n")
-    export_file.write("if ___requireTable[module_name]~=nil then return ___requireTable[module_name](p_module) end"+"\n")
-    export_file.write("return ___defaultRequire(module_name)"+"\n")
-    export_file.write("end"+"\n")
 
     for temp_get in export_files:
         temp_get_name=temp_get
@@ -226,12 +220,11 @@ def main():
                 cleaning_list.append(fix_separator(temp_get_name))
             
             if len(module_name_list)>=1:
-                export_file.write("___requireTable[\""+ module_name_list[0] +"\"]=function(...)"+"\n")
+                export_file.write("package.preload[\""+ module_name_list[0] +"\"]=function(...)"+"\n")
                 temp_file=open(fix_separator(temp_get_name),"r",encoding="utf-8")
                 export_file.write(temp_file.read()+"\n")
                 temp_file.close()
                 export_file.write("end"+"\n")
-                export_file.write("package.preload[\""+ module_name_list[0] +"\"]=___requireTable[\""+ module_name_list[0] +"\"]"+"\n")
 
                 if len(module_name_list)>=2:
                     for temp_cnt in range(1,len(module_name_list)):
