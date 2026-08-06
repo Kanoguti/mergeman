@@ -1,5 +1,5 @@
 # mergeman
-# 2024-2025 Kanoguti
+# 2024-2026 Kanoguti
 
 import os
 import glob
@@ -74,15 +74,16 @@ def main():
     argv_data["clean"]=False
     argv_data["blank"]=False
     argv_data["protect"]=False
+    argv_data["convert"]=False
 
-    print("mergeman - ver 1.03")
+    print("mergeman - ver 1.04")
 
     if len(sys.argv)-1<=0:
         print("=Usage=")
-        print("./mergeman --project <project directory> --entry <entry file> [--output <save file>] [--obfuscate <obfuscate count>] [--exclude <exclude path>] [--clean or --blank] [--protect]")
+        print("./mergeman --project <project directory> --entry <entry file> [--output <save file>] [--obfuscate <obfuscate count>] [--exclude <exclude path>] [--clean or --blank] [--protect] [--convert <C code file>]")
         print("")
         print("=Example=")
-        print("./mergeman --project \"path/to/project\" --entry main.lua --output out.lua --obfuscate 1 --exclude \"path/to/exclude/dir\" --exclude \"path/to/exclude/script.lua\"")
+        print("./mergeman --project \"path/to/project\" --entry main.lua --output out.lua --obfuscate 1 --exclude \"path/to/exclude/dir\" --exclude \"path/to/exclude/script.lua\" --convert out.c")
         sys.exit()
 
     temp_mode=None
@@ -105,6 +106,8 @@ def main():
                 argv_data["blank"]=True
             elif temp_get=="--protect":
                 argv_data["protect"]=True
+            elif temp_get=="--convert" and argv_data["convert"]==False:
+                temp_mode="convert"
         else:
             if temp_mode=="project" and os.path.isdir(fix_path(temp_get))==True:
                 argv_data["project"]=fix_path(temp_get)
@@ -120,6 +123,8 @@ def main():
                     argv_data["obfuscate"]=5
             elif temp_mode=="exclude":
                 argv_data["exclude"].append(fix_separator(temp_get))
+            elif temp_mode=="convert":
+                argv_data["convert"]=fix_separator(temp_get)
             temp_mode=None
 
     if argv_data["project"]==None:
@@ -164,7 +169,11 @@ def main():
         print("--protect : False")
     else:
         print("--protect : True")
-    
+    if argv_data["convert"]==False:
+        print("--convert : False")
+    else:
+        print("--convert : \""+ argv_data["convert"] +"\"")
+
     import_path=argv_data["project"]
     
     def temp_func(path):
@@ -246,7 +255,7 @@ def main():
             temp_data="".join([ r"\{:03d}".format(temp_byte) for temp_byte in temp_file.read().encode() ])
             temp_file.close()
             temp_file=open(argv_data["output"],"w",encoding="utf-8")
-            temp_file.write("return loadstring(\""+ temp_data +"\")()")
+            temp_file.write("return (loadstring or load)(\""+ temp_data +"\")()")
             temp_file.close()
 
     if len(cleaning_list)>0:
@@ -264,6 +273,25 @@ def main():
             if os.path.isdir(temp_file):
                 if len(filelist(temp_file))==0:
                     shutil.rmtree(temp_file)
+
+    if argv_data["convert"]!=False:
+        temp_file=open(argv_data["output"],"r",encoding="utf-8")
+        temp_data="".join([ r"\\{:03d}".format(temp_byte) for temp_byte in temp_file.read().encode() ])
+        temp_file.close()
+        temp_file=open(argv_data["convert"],"w",encoding="utf-8")
+        temp_file.write("#include <lua.h>"+"\n")
+        temp_file.write("#include <lualib.h>"+"\n")
+        temp_file.write("#include <lauxlib.h>"+"\n")
+        temp_file.write("int main(void) {"+"\n")
+        temp_file.write("\tlua_State *L = luaL_newstate();"+"\n")
+        temp_file.write("\tluaL_openlibs(L);"+"\n")
+        temp_file.write("\tif (luaL_dostring(L,\"(loadstring or load)(\\\""+ temp_data +"\\\")()\")!=LUA_OK) {"+"\n")
+        temp_file.write("\t\tprintf(\"ERROR : %s\\n\",lua_tostring(L, -1));"+"\n")
+        temp_file.write("\t}"+"\n")
+        temp_file.write("\tlua_close(L);"+"\n")
+        temp_file.write("\treturn 0;"+"\n")
+        temp_file.write("}"+"\n")
+        temp_file.close()
 
     os.chdir(current_path)
 

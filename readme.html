@@ -62,12 +62,12 @@
         <table class="main">
             <tr>
                 <td class="jp">
-                    <h2 class="center">「mergeman(Ver.1.03)」<br>説明書</h2>
-                    <p class="center">2024-2025 Kanoguti</p>
+                    <h2 class="center">「mergeman(Ver.1.04)」<br>説明書</h2>
+                    <p class="center">2024-2026 Kanoguti</p>
                 </td>
                 <td class="en">
-                    <h2 class="center">"mergeman(Ver.1.03)"<br>Instructions</h2>
-                    <p class="center">2024-2025 Kanoguti</p>
+                    <h2 class="center">"mergeman(Ver.1.04)"<br>Instructions</h2>
+                    <p class="center">2024-2026 Kanoguti</p>
                 </td>
             </tr>
             <tr>
@@ -94,7 +94,7 @@
                         このソフトウェアは、コンソールアプリケーションです。なのでこのソフトウェアは、Windowsでは「Windows PowerShell」や「コマンドプロンプト」上で、LinuxやmacOSでは「ターミナル」上で動作します。
                     </p>
                     <p>
-                        このソフトウェアのプログラムはPython 3.14.0で記述されています。このソフトウェアをソースコードから動作させるには、Pythonをインストールしてください。
+                        このソフトウェアのプログラムはPython 3.14.7で記述されています。このソフトウェアをソースコードから動作させるには、Pythonをインストールしてください。
                     </p>
                     <p>
                         このソフトウェアの基本的な使い方は以下の通りです。
@@ -112,7 +112,7 @@
                         This software is a console application. So this software runs on "Windows PowerShell" or "Command Prompt" on Windows, and on "Terminal" on Linux and macOS.
                     </p>
                     <p>
-                        This software program is written in Python 3.14.0. To run this software from source code, please install Python.
+                        This software program is written in Python 3.14.7. To run this software from source code, please install Python.
                     </p>
                     <p>
                         The basic usage of this software is as follows.
@@ -255,6 +255,22 @@
                                 </p>
                             </td>
                         </tr>
+                        <tr>
+                            <td><code>--convert [path]</code></td>
+                            <td>
+                                <p>
+                                    「<code>--output</code>」オプションで指定された出力済みのLuaスクリプトファイルから、C言語のコードを作成します。
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>出力するC言語コードファイルの相対パス。
+                                        </li>
+                                    </ul>
+                                </p>
+                            </td>
+                        </tr>
                     </table>
                 </td>
                 <td class="en">
@@ -384,6 +400,22 @@
                             <td>
                                 <p>
                                     By default, all empty folders in the resulting folder of processing are automatically deleted, but this option prevents that process.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--convert [path]</code></td>
+                            <td>
+                                <p>
+                                    Generates C code from the pre-compiled Lua script file specified with the "<code>--output</code>" option.
+                                </p>
+                                <hr>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <code>[path]</code><br>The relative path to the C code file to be output.
+                                        </li>
+                                    </ul>
                                 </p>
                             </td>
                         </tr>
